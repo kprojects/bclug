@@ -1,4 +1,4 @@
-name: Deploy BCLUG Website 
+name: Deploy BCLUG Website
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
 
-        rsync -avz -e "ssh -i private_key.pem -o StrictHostKeyChecking=no" --delete --exclude '.git' --exclude '.github' . $USERNAME@$HOST:$REMOTE_PATH
+        rsync -avz -e "ssh -i private_key.pem -o StrictHostKeyChecking=no" --delete --exclude '.git' --exclude '.github' website/ $USERNAME@$HOST:$REMOTE_PATH
 
         rm -f private_key.pem
 
